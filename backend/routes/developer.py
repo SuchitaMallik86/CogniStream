@@ -1,12 +1,11 @@
 from fastapi import APIRouter
 
-router = APIRouter()
+from backend.models.developer_model import DeveloperResponse
+from backend.services.developer_service import get_developer_data
 
-@router.get("/developer")
+router = APIRouter(tags=["Developer"])
+
+
+@router.get("/developer", response_model=DeveloperResponse)
 def get_developer():
-    return {
-        "developer": "Demo Developer",
-        "flow_state": "Focused",
-        "coding_time": "120 minutes",
-        "interruptions": 3
-    }
+    return get_developer_data()

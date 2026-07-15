@@ -1,4 +1,3 @@
-from datetime import datetime
 from fastapi import APIRouter
 
 from backend.config.settings import (
@@ -7,15 +6,13 @@ from backend.config.settings import (
     ENVIRONMENT,
 )
 
-router = APIRouter(tags=["System"])
+router = APIRouter(tags=["Configuration"])
 
 
-@router.get("/health")
-def health_check():
+@router.get("/config")
+def get_configuration():
     return {
-        "status": "healthy",
         "application": APP_NAME,
         "version": APP_VERSION,
         "environment": ENVIRONMENT,
-        "timestamp": datetime.utcnow().isoformat() + "Z",
     }
